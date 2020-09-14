@@ -1,0 +1,27 @@
+<%- include('./partials/header')%>
+
+
+    <div class="container">
+        <h4>House Detail</h4>
+        <img src="<%= home.image%>">
+        <p class="mb-1 mt-4">
+            Title :
+            <%= home.title%>
+                </a>
+        </p>
+        <p class="mb-1">
+            City :
+            <%= home.city%>
+        </p>
+        <p class="mb-1">
+            Location :
+            <%= home.location%>
+        </p>
+        <p class="font-weight-bold">
+            Price : Birr
+            <%= home.price%>
+        </p>
+    </div>
+
+
+    <%- include('./partials/footer')%>

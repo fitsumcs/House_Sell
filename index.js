@@ -60,6 +60,19 @@ app.get('/houses', (req, res) => {
 app.get('/houses/new', (req, res) => {
     res.render('newHouse');
 });
+// view single house form view
+app.get('/houses/:id', (req, res) => {
+    HouseModel.findById(req.params.id, (error, home) => {
+        if (error) {
+            console.log("Some Error");
+
+        } else {
+            res.render('houseDetail', { home });
+        }
+
+    });
+
+});
 // add new house 
 app.post('/houses', (req, res) => {
 
