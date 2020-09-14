@@ -1,0 +1,11 @@
+<%- include('./partials/header')%>
+
+    <h1>Add New House</h1>
+    <form action="/houses" method="post">
+        <input type="text" name="title" id="" placeholder="House Title" required><br><br>
+        <input type="url" name="image" id="" placeholder="Image URL" required><br><br>
+        <input type="submit" value="Add New">
+    </form>
+
+
+    <%- include('./partials/footer')%>
