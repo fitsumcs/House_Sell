@@ -4,23 +4,23 @@
         <form action="/houses" method="post">
             <div class="form-group">
                 <label for="title">Short Title</label>
-                <input type="text" class="form-control" aria-describedby="shortTitle" placeholder="House Title" id="title" name="title">
+                <input type="text" class="form-control" aria-describedby="shortTitle" placeholder="House Title" id="title" name="title" required>
             </div>
             <div class="form-group">
                 <label for="price">House Price</label>
-                <input type="number" class="form-control" aria-describedby="housePrice" placeholder="House Price" id="price" name="price">
+                <input type="number" class="form-control" aria-describedby="housePrice" placeholder="House Price" id="price" name="price" required>
             </div>
             <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" class="form-control" aria-describedby="houseCity" placeholder="City E.g Addis Ababa" id="city" name="city">
+                <input type="text" class="form-control" aria-describedby="houseCity" placeholder="City E.g Addis Ababa" id="city" name="city" required>
             </div>
             <div class="form-group">
                 <label for="title">Special Location</label>
-                <input type="text" class="form-control" aria-describedby="houseLocation" placeholder="House Location E.g Bole" id="location" name="location">
+                <input type="text" class="form-control" aria-describedby="houseLocation" placeholder="House Location E.g Bole" id="location" name="location" required>
             </div>
             <div class="form-group">
                 <label for="title">Image Url</label>
-                <input type="url" class="form-control" aria-describedby="imageURL" placeholder="Image URL E.g http://image/image.png" id="image" name="image">
+                <input type="url" class="form-control" aria-describedby="imageURL" placeholder="Image URL E.g http://image/image.png" id="image" name="image" required>
             </div>
             <button type="submit" class="btn btn-primary">Add New House</button>
         </form>
