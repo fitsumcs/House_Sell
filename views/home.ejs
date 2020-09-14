@@ -1,16 +1,43 @@
 <%- include('./partials/header')%>
 
-    <h1>This is all Houses Page</h1>
-    <a href="/houses/new">New House</a><br>
-    <% homes.forEach((home)=>{%>
-        <div>
-            <img src="<%= home.image%>">
-            <h3>
-                <%= home.title%>
-            </h3>
+    <div class="container">
+
+
+        <header class="jumbotron">
+            <div class="container">
+
+
+                <h1>Wellcome to House Sell in Ethiopia!</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, unde nulla, sequi temporibus tempora impedit architecto magni alias neque animi, tempore veniam autem dignissimos voluptas omnis quod blanditiis? Inventore, distinctio!</p>
+                <p>
+                    <a class="btn btn-primary btn-large" href="/houses/new">Add New House</a>
+                </p>
+            </div>
+        </header>
+
+        <div class="row">
+
+
+            <% homes.forEach((home)=>{%>
+                <div class="col-md-3">
+
+                    <img class="img-thumbnail" src="<%= home.image%>">
+                    <p class="mb-1">
+                        <a href="#">
+                            <%= home.title%>
+                        </a>
+                    </p>
+                    <p class="mb-1">
+                        <%= home.location%> -
+                            <%= home.city%>
+                    </p>
+                    <p class="font-weight-bold">Birr
+                        <%= home.price%>
+                    </p>
+                </div>
+                <%})%>
         </div>
-        <%})%>
+    </div>
 
 
-
-            <%- include('./partials/footer')%>
+    <%- include('./partials/footer')%>

@@ -5,10 +5,11 @@ const port = process.env.PORT || 3000;
 
 // fake data 
 const homes = [
-    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg" },
-    { title: "Two By Three", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg" },
-    { title: "Two By Four", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg" },
-    { title: "Two By Five", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg" }
+    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
 ];
 // The app 
 const app = express();
@@ -33,7 +34,10 @@ app.post('/houses', (req, res) => {
     //grab data from form 
     const title = req.body.title;
     const image = req.body.image;
-    const data = { title, image };
+    const price = req.body.price;
+    const city = req.body.city;
+    const location = req.body.location;
+    const data = { title, image, price, city, location };
     homes.push(data);
     res.redirect('/houses');
 
