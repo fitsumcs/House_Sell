@@ -1,14 +1,33 @@
 <%- include('./partials/header')%>
+    <div class="container">
+        <h3>Add New House</h3>
+        <form action="/houses" method="post">
+            <div class="form-group">
+                <label for="title">Short Title</label>
+                <input type="text" class="form-control" aria-describedby="shortTitle" placeholder="House Title" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="price">House Price</label>
+                <input type="number" class="form-control" aria-describedby="housePrice" placeholder="House Price" id="price" name="price">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" aria-describedby="houseCity" placeholder="City E.g Addis Ababa" id="city" name="city">
+            </div>
+            <div class="form-group">
+                <label for="title">Special Location</label>
+                <input type="text" class="form-control" aria-describedby="houseLocation" placeholder="House Location E.g Bole" id="location" name="location">
+            </div>
+            <div class="form-group">
+                <label for="title">Image Url</label>
+                <input type="url" class="form-control" aria-describedby="imageURL" placeholder="Image URL E.g http://image/image.png" id="image" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Add New House</button>
+        </form>
 
-    <h1>Add New House</h1>
-    <form action="/houses" method="post">
-        <input type="text" name="title" id="" placeholder="House Title" required><br><br>
-        <input type="number" name="price" id="" placeholder="House Price in Birr" required><br><br>
-        <input type="text" name="city" id="" placeholder="City" required><br><br>
-        <input type="text" name="location" id="" placeholder="Special Location Name" required><br><br>
-        <input type="url" name="image" id="" placeholder="Image URL" required><br><br>
-        <input type="submit" value="Add New">
-    </form>
+    </div>
+
+
 
 
     <%- include('./partials/footer')%>
