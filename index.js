@@ -1,16 +1,49 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 // port 
 const port = process.env.PORT || 3000;
+// db url 
+const database_url = process.env.DB_URL || 'mongodb://localhost/house_db';
 
-// fake data 
-const homes = [
-    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
-    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
-    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
-    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
-    { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
-];
+//connection
+mongoose.connect(database_url, { useNewUrlParser: true, useUnifiedTopology: true });
+const houseSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    location: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    }
+});
+// the model
+const HouseModel = mongoose.model('House', houseSchema);
+
+// // temp data 
+// HouseModel.create({ title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" });
+// // fake data 
+// const homes = [
+//     { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+//     { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+//     { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+//     { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+//     { title: "Two By TWo", image: "https://image.shutterstock.com/image-photo/young-man-sale-board-selling-260nw-730777636.jpg", price: 35000, city: "Addis Ababa", location: "Bole" },
+// ];
 // The app 
 const app = express();
 
@@ -22,7 +55,14 @@ app.get("/", (req, res) => {
     res.render('index');
 });
 app.get('/houses', (req, res) => {
-    res.render('home', { homes });
+    HouseModel.find({}, (error, homes) => {
+        if (error) {
+            console.log("Some DB error");
+        } else {
+            res.render('home', { homes });
+        }
+    });
+
 });
 // new house form view
 app.get('/houses/new', (req, res) => {
