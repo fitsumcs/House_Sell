@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const HouseModel = require('./models/house');
 // port 
 const port = process.env.PORT || 3000;
 // db url 
@@ -9,30 +9,6 @@ const database_url = process.env.DB_URL || 'mongodb://localhost/house_db';
 
 //connection
 mongoose.connect(database_url, { useNewUrlParser: true, useUnifiedTopology: true });
-const houseSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    location: {
-        type: String,
-        required: true
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        required: true
-    }
-});
-// the model
-const HouseModel = mongoose.model('House', houseSchema);
 
 
 
