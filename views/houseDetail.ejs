@@ -3,24 +3,38 @@
 
     <div class="container">
         <h4>House Detail</h4>
-        <img src="<%= home.image%>">
-        <p class="mb-1 mt-4">
-            Title :
-            <%= home.title%>
-                </a>
-        </p>
-        <p class="mb-1">
-            City :
-            <%= home.city%>
-        </p>
-        <p class="mb-1">
-            Location :
-            <%= home.location%>
-        </p>
-        <p class="font-weight-bold">
-            Price : Birr
-            <%= home.price%>
-        </p>
+        <div class="row">
+
+            <div class="col-md-9">
+                <img class="detail" src="<%= home.image%>">
+            </div>
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item">
+
+                        <strong>About the House :</strong>
+                        <%= home.title%>
+                    </li>
+                    <li class="list-group-item">
+
+                        <strong>City :</strong>
+                        <%= home.city%>
+                    </li>
+                    <li class="list-group-item">
+
+                        <strong>Location :</strong>
+                        <%= home.location%>
+                    </li>
+                    <li class="list-group-item">
+
+                        <strong>Price : Birr</strong>
+                        <%= home.price%>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
     </div>
 
 
