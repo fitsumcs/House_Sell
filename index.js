@@ -2,6 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const HouseModel = require('./models/house');
+const UserModel = require('./models/user');
+const passport = require('passport');
+const passportLocal = require('passport-local');
+
 // port 
 const port = process.env.PORT || 3000;
 // db url 
@@ -15,11 +19,23 @@ mongoose.connect(database_url, { useNewUrlParser: true, useUnifiedTopology: true
 // The app 
 const app = express();
 
+
 // config 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
+// Passport config 
+app.use(require('express-session')({
+    secret: "here we go agin",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new passportLocal(UserModel.authenticate()));
+passport.serializeUser(UserModel.serializeUser());
+passport.deserializeUser(UserModel.deserializeUser());
 //routes 
 app.get("/", (req, res) => {
     res.render('index');
