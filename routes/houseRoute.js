@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 });
 // new house form view
-router.get('/new', (req, res) => {
+router.get('/new', isLogged, (req, res) => {
     res.render('newHouse');
 });
 // view single house form view
@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
 
 });
 // add new house 
-router.post('/', (req, res) => {
+router.post('/', isLogged, (req, res) => {
 
     //grab data from form 
     const title = req.body.title;
@@ -49,5 +49,15 @@ router.post('/', (req, res) => {
 
 
 });
+
+//check login
+function isLogged(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+
+
+}
 
 module.exports = router;
