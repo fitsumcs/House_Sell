@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
+
 // Passport config 
 app.use(require('express-session')({
     secret: "here we go agin",
@@ -36,6 +37,11 @@ app.use(passport.session());
 passport.use(new passportLocal(UserModel.authenticate()));
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
+//current user 
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
 //routes 
 app.get("/", (req, res) => {
     res.render('index');
