@@ -38,7 +38,11 @@ router.post('/', isLogged, (req, res) => {
     const price = req.body.price;
     const city = req.body.city;
     const location = req.body.location;
-    const data = { title, image, price, city, location };
+    const author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    const data = { title, image, price, city, location, author };
     HouseModel.create(data, (error, data) => {
         if (error) {
             console.log("Some Error");

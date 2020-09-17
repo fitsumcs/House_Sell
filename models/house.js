@@ -19,6 +19,13 @@ const houseSchema = new mongoose.Schema({
     image: {
         type: String,
         required: true
+    },
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
     }
 });
 // the model
