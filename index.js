@@ -105,4 +105,15 @@ app.post('/register', (req, res) => {
         });
     });
 });
+
+//login 
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/houses',
+    failureRedirect: '/login'
+}), (req, res) => {
+
+});
 app.listen(port, () => console.log("Server Started"));
