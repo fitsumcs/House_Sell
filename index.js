@@ -113,7 +113,10 @@ app.get('/login', (req, res) => {
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/houses',
     failureRedirect: '/login'
-}), (req, res) => {
-
+}), (req, res) => {});
+//logout
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
 });
 app.listen(port, () => console.log("Server Started"));
