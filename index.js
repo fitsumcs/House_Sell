@@ -87,4 +87,22 @@ app.post('/houses', (req, res) => {
 
 
 });
+
+//Auth Route 
+//register 
+app.get('/register', (req, res) => {
+    res.render('register');
+});
+app.post('/register', (req, res) => {
+    const newUser = new UserModel({ username: req.body.username });
+    UserModel.register(newUser, req.body.password, (err, user) => {
+        if (err) {
+            console.log(err);
+            return res.render('/register');
+        }
+        passport.authenticate('local')(req, res, () => {
+            res.redirect('/houses');
+        });
+    });
+});
 app.listen(port, () => console.log("Server Started"));
