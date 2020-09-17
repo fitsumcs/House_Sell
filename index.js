@@ -50,7 +50,7 @@ app.get("/", (req, res) => {
     res.render('index');
 });
 
-app.use(houseRoute);
+app.use('/houses', houseRoute);
 app.use(authRoute);
 
 app.listen(port, () => console.log("Server Started"));

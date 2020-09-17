@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const HouseModel = require('../models/house');
-router.get('/houses', (req, res) => {
+
+router.get('/', (req, res) => {
     HouseModel.find({}, (error, homes) => {
         if (error) {
             console.log("Some DB error");
@@ -12,11 +13,11 @@ router.get('/houses', (req, res) => {
 
 });
 // new house form view
-router.get('/houses/new', (req, res) => {
+router.get('/new', (req, res) => {
     res.render('newHouse');
 });
 // view single house form view
-router.get('/houses/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     HouseModel.findById(req.params.id, (error, home) => {
         if (error) {
             console.log("Some Error");
@@ -29,7 +30,7 @@ router.get('/houses/:id', (req, res) => {
 
 });
 // add new house 
-router.post('/houses', (req, res) => {
+router.post('/', (req, res) => {
 
     //grab data from form 
     const title = req.body.title;
