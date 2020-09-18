@@ -6,6 +6,7 @@ const UserModel = require('./models/user');
 const passport = require('passport');
 const passportLocal = require('passport-local');
 const method_override = require('method-override');
+const flash = require('connect-flash');
 //routes
 const houseRoute = require('./routes/houseRoute');
 const authRoute = require('./routes/authRoute');
@@ -29,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(method_override('_method'));
-
+app.use(flash());
 // Passport config 
 app.use(require('express-session')({
     secret: "here we go agin",
