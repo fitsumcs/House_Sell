@@ -22,7 +22,8 @@ router.post('/register', (req, res) => {
 
 //login 
 router.get('/login', (req, res) => {
-    res.render('login', { message: req.flash('error') });
+
+    res.render('login');
 });
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/houses',
@@ -31,6 +32,7 @@ router.post('/login', passport.authenticate('local', {
 //logout
 router.get('/logout', (req, res) => {
     req.logout();
+    req.flash("success", "Good Bye!!");
     res.redirect('/');
 });
 
