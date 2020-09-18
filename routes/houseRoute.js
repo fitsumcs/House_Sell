@@ -55,18 +55,16 @@ router.post('/', isLogged, (req, res) => {
 });
 
 //Edit route 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', checkOwner, (req, res) => {
 
     HouseModel.findById(req.params.id, (err, homes) => {
-        if (err) {
-            res.redirect('/houses');
-        } else {
-            res.render('editHouse', { homes });
-        }
+
+        res.render('editHouse', { homes });
+
     });
 });
 //Update route
-router.put('/:id', (req, res) => {
+router.put('/:id', checkOwner, (req, res) => {
     //find and update
     HouseModel.findByIdAndUpdate(req.params.id, req.body.house, (err, data) => {
         if (err) {
@@ -78,7 +76,7 @@ router.put('/:id', (req, res) => {
     // redirect 
 });
 // delete 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkOwner, (req, res) => {
     HouseModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
             res.redirect('/houses');
@@ -95,7 +93,29 @@ function isLogged(req, res, next) {
         return next();
     }
     res.redirect('/login');
+}
+// house ownership 
+function checkOwner(req, res, next) {
+    if (req.isAuthenticated()) {
+        HouseModel.findById(req.params.id, (err, homes) => {
+            if (err) {
+                res.redirect('back');
 
+            } else {
+                // is he auth
+                if (homes.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect('back');
+                }
+
+            }
+
+        });
+
+    } else {
+        res.redirect('back');
+    }
 
 }
 
