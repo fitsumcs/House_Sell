@@ -77,6 +77,18 @@ router.put('/:id', (req, res) => {
     });
     // redirect 
 });
+// delete 
+router.delete('/:id', (req, res) => {
+    HouseModel.findByIdAndRemove(req.params.id, (err) => {
+        if (err) {
+            res.redirect('/houses');
+        } else {
+            res.redirect('/houses');
+        }
+    });
+});
+
+
 //check login
 function isLogged(req, res, next) {
     if (req.isAuthenticated()) {
