@@ -48,6 +48,7 @@ router.post('/', isLogged, (req, res) => {
         if (error) {
             console.log("Some Error");
         } else {
+            req.flash("success", "You have Added new House!");
             res.redirect('/houses');
         }
     });
@@ -71,6 +72,7 @@ router.put('/:id', checkOwner, (req, res) => {
         if (err) {
             res.redirect('/');
         } else {
+            req.flash("success", "You have Updated House Info!");
             res.redirect(`/houses/${req.params.id}`);
         }
     });
@@ -82,6 +84,7 @@ router.delete('/:id', checkOwner, (req, res) => {
         if (err) {
             res.redirect('/houses');
         } else {
+            req.flash("error", "You have Deleted House Info!");
             res.redirect('/houses');
         }
     });

@@ -11,10 +11,11 @@ router.post('/register', (req, res) => {
     const newUser = new UserModel({ username: req.body.username });
     UserModel.register(newUser, req.body.password, (err, user) => {
         if (err) {
-            console.log(err);
-            return res.render('/register');
+            req.flash("error", err.message);
+            return res.redirect('/register');
         }
         passport.authenticate('local')(req, res, () => {
+            req.flash("success", `Welcome ${user.username}`);
             res.redirect('/houses');
         });
     });

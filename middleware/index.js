@@ -8,6 +8,7 @@ middleware.checkOwner = function(req, res, next) {
     if (req.isAuthenticated()) {
         HouseModel.findById(req.params.id, (err, homes) => {
             if (err) {
+                req.flash("error", "Sorry House Not Found!!");
                 res.redirect('back');
 
             } else {
@@ -15,7 +16,8 @@ middleware.checkOwner = function(req, res, next) {
                 if (homes.author.id.equals(req.user._id)) {
                     next();
                 } else {
-                    res.redirect('back');
+                    req.flash("error", "Sorry Permission Denied!!");
+                    res.redirect('/houses');
                 }
 
             }
