@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const HouseModel = require('../models/house');
+const { isLogged, checkOwner } = require('../middleware');
 
 router.get('/', (req, res) => {
     HouseModel.find({}, (error, homes) => {
@@ -87,36 +88,7 @@ router.delete('/:id', checkOwner, (req, res) => {
 });
 
 
-//check login
-function isLogged(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/login');
-}
-// house ownership 
-function checkOwner(req, res, next) {
-    if (req.isAuthenticated()) {
-        HouseModel.findById(req.params.id, (err, homes) => {
-            if (err) {
-                res.redirect('back');
 
-            } else {
-                // is he auth
-                if (homes.author.id.equals(req.user._id)) {
-                    next();
-                } else {
-                    res.redirect('back');
-                }
 
-            }
-
-        });
-
-    } else {
-        res.redirect('back');
-    }
-
-}
 
 module.exports = router;
