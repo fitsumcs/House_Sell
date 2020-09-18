@@ -1,11 +1,31 @@
 <%- include('./partials/header')%>
+    <div class="container">
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
+                <% if(success && success.length > 0){ %>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                    <% } %>
 
-    <h1>This is Index Page..</h1>
 
-    <h1>Wellcome to home sell and purchase</h1>
+    </div>
+    <div class="con">
+        <div id="landing-header">
+            <h1>Welcome to HEHouse Sell!</h1>
+            <a href="/houses" class="btn btn-lg btn-success">View All Houses</a>
+        </div>
 
-    <a href="/houses">View All Homes</a>
-
-
+        <ul class="slideshow">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
 
     <%- include('./partials/footer')%>
