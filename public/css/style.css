@@ -6,3 +6,9 @@ img.detail {
 .din {
     display: inline;
 }
+
+.img-thumbnail {
+    margin-bottom: .5rem;
+    width: inherit;
+    height: 15rem;
+}
