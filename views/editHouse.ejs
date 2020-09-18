@@ -1,0 +1,34 @@
+<%- include('./partials/header')%>
+    <div class="container">
+        <h3>Edit
+            <em><%= homes.title %></em> House Info!</h3>
+        <form action="/houses/<%= homes._id %>?_method=PUT" method="post">
+            <div class="form-group">
+                <label for="title">Short Title</label>
+                <input type="text" class="form-control" aria-describedby="shortTitle" value="<%= homes.title %>" id="title" name="house[title]" required>
+            </div>
+            <div class="form-group">
+                <label for="price">House Price</label>
+                <input type="number" class="form-control" aria-describedby="housePrice" value="<%= homes.price %>" id="price" name="house[price]" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" aria-describedby="houseCity" value="<%= homes.city %>" id="city" name="house[city]" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Special Location</label>
+                <input type="text" class="form-control" aria-describedby="houseLocation" value="<%= homes.location %>" id="location" name="house[location]" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Image Url</label>
+                <input type="url" class="form-control" aria-describedby="imageURL" value="<%= homes.image %>" id="image" name="house[image]" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Edit House</button>
+        </form>
+
+    </div>
+
+
+
+
+    <%- include('./partials/footer')%>

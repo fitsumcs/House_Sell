@@ -54,6 +54,29 @@ router.post('/', isLogged, (req, res) => {
 
 });
 
+//Edit route 
+router.get('/:id/edit', (req, res) => {
+
+    HouseModel.findById(req.params.id, (err, homes) => {
+        if (err) {
+            res.redirect('/houses');
+        } else {
+            res.render('editHouse', { homes });
+        }
+    });
+});
+//Update route
+router.put('/:id', (req, res) => {
+    //find and update
+    HouseModel.findByIdAndUpdate(req.params.id, req.body.house, (err, data) => {
+        if (err) {
+            res.redirect('/');
+        } else {
+            res.redirect(`/houses/${req.params.id}`);
+        }
+    });
+    // redirect 
+});
 //check login
 function isLogged(req, res, next) {
     if (req.isAuthenticated()) {

@@ -5,6 +5,7 @@ const HouseModel = require('./models/house');
 const UserModel = require('./models/user');
 const passport = require('passport');
 const passportLocal = require('passport-local');
+const method_override = require('method-override');
 //routes
 const houseRoute = require('./routes/houseRoute');
 const authRoute = require('./routes/authRoute');
@@ -15,7 +16,7 @@ const port = process.env.PORT || 3000;
 const database_url = process.env.DB_URL || 'mongodb://localhost/house_db';
 
 //connection
-mongoose.connect(database_url, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(database_url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 
 
@@ -27,7 +28,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
-
+app.use(method_override('_method'));
 
 // Passport config 
 app.use(require('express-session')({

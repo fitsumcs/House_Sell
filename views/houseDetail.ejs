@@ -9,9 +9,10 @@
                 <img class="detail" src="<%= home.image%>">
                 <li class="list-group-item">
 
-                    <strong>Submitted By :</strong>
+                    <strong> <em>Submitted By :</em> </strong>
                     <%= home.author.username%>
                 </li>
+                <p><a class="btn btn-outline-info mt-2" href="/houses/<%= home._id %>/edit">Edit House Info</a></p>
             </div>
             <div class="col-md-3">
                 <ul class="list-group">
