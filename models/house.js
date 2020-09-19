@@ -26,7 +26,12 @@ const houseSchema = new mongoose.Schema({
             ref: "User"
         },
         username: String
-    }
+    },
+
+
+
+}, {
+    timestamps: true
 });
 // the model
 module.exports = mongoose.model('House', houseSchema);

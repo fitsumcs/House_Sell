@@ -4,7 +4,7 @@ const HouseModel = require('../models/house');
 const { isLogged, checkOwner } = require('../middleware');
 
 router.get('/', (req, res) => {
-    HouseModel.find({}, (error, homes) => {
+    HouseModel.find().sort({ createdAt: -1 }).exec((error, homes) => {
         if (error) {
             console.log("Some DB error");
         } else {
