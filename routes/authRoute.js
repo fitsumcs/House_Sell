@@ -8,7 +8,7 @@ router.get('/register', (req, res) => {
     res.render('register');
 });
 router.post('/register', (req, res) => {
-    const newUser = new UserModel({ username: req.body.username });
+    const newUser = new UserModel({ firstname: req.body.firstname, lastname: req.body.lastname, username: req.body.username });
     if (req.body.password !== req.body.password2) {
         req.flash("error", "Password Does not match!!");
         return res.redirect('/register');
