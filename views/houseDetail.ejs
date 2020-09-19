@@ -9,6 +9,11 @@
                 <img class="detail" src="<%= home.image%>">
                 <li class="list-group-item">
 
+                    <em class="date"> <%= home.createdAt.toDateString()%></em>
+
+                </li>
+                <li class="list-group-item">
+
                     <strong> <em>Submitted By :</em> </strong>
                     <%= home.author.username%>
                 </li>

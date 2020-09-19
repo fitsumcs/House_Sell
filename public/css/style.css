@@ -12,3 +12,8 @@ img.detail {
     width: inherit;
     height: 15rem;
 }
+
+.date {
+    font-size: .7rem;
+    color: rgb(97, 56, 7);
+}
