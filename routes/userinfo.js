@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const UserModel = require('../models/user');
+const { isLogged } = require('../middleware');
 
-router.get('/:userNm', (req, res) => {
+router.get('/:userNm', isLogged, (req, res) => {
     res.render('userinfo');
 });
 
