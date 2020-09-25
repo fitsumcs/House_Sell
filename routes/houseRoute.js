@@ -3,9 +3,9 @@ const router = express.Router();
 const HouseModel = require('../models/house');
 const { isLogged, checkOwner } = require('../middleware');
 
-router.get('/allhouse/:id', async(req, res) => {
+router.get('/allhouse/:page', async(req, res) => {
 
-    const resPerPage = 6; // results per page
+    const resPerPage = 2; // results per page
     const page = req.params.page || 1; // Page
 
 
