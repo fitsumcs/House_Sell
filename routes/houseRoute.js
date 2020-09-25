@@ -3,14 +3,33 @@ const router = express.Router();
 const HouseModel = require('../models/house');
 const { isLogged, checkOwner } = require('../middleware');
 
-router.get('/', (req, res) => {
-    HouseModel.find().sort({ createdAt: -1 }).exec((error, homes) => {
-        if (error) {
-            console.log("Some DB error");
-        } else {
-            res.render('home', { homes });
-        }
-    });
+router.get('/allhouse/:id', async(req, res) => {
+
+    const resPerPage = 6; // results per page
+    const page = req.params.page || 1; // Page
+
+
+    try {
+
+
+        // Find Demanded Products - Skipping page values, limit results per page
+        const homes = await HouseModel.find()
+            .sort({ createdAt: -1 })
+            .skip((resPerPage * page) - resPerPage)
+            .limit(resPerPage);
+        // Count how many products were found
+        const numOfHomes = await HouseModel.countDocuments();
+        // Renders The Page
+        res.render('home', {
+            homes: homes,
+            currentPage: page,
+            pages: Math.ceil(numOfHomes / resPerPage),
+            numOfResults: numOfHomes
+        });
+
+    } catch (err) {
+        console.log("Some Internal Error " + err);
+    }
 
 });
 // new house form view
@@ -49,7 +68,7 @@ router.post('/', isLogged, (req, res) => {
             console.log("Some Error");
         } else {
             req.flash("success", "You have Added new House!");
-            res.redirect('/houses');
+            res.redirect('/houses/allhouse/1');
         }
     });
 
