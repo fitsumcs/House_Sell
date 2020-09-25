@@ -11,12 +11,17 @@
                 <input type="text" class="form-control" aria-describedby="lastName" placeholder="Last Name" id="lastname" name="lastname" required>
             </div>
             <div class="form-group">
+                <label for="username">Birth Date</label>
+                <input type="date" class="form-control" aria-describedby="birthDate" id="birthdate" name="birthdate" pattern="\d{4}-\d{2}-\d{2}" required>
+            </div>
+            <div class="form-group">
                 <label for="username">User Name</label>
                 <input type="text" class="form-control" aria-describedby="userName" placeholder="User Name" id="username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" aria-describedby="userPassword" placeholder="Password" id="password" name="password" required>
+                <input type="password" class="form-control" aria-describedby="userPassword" title="Password must contain: Minimum 8 characters at least one number, one lowercase and one uppercase letter" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{8,}$" placeholder="Password"
+                    id="password" name="password" required>
             </div>
             <div class="form-group">
                 <label for="password">Confirm Password</label>

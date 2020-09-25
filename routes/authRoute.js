@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/user');
 const passport = require('passport');
+const url = require('url');
 //Auth Route 
 //register 
 router.get('/register', (req, res) => {
     res.render('register');
 });
 router.post('/register', (req, res) => {
-    const newUser = new UserModel({ firstname: req.body.firstname, lastname: req.body.lastname, username: req.body.username });
+    const newUser = new UserModel({ firstname: req.body.firstname, lastname: req.body.lastname, username: req.body.username, birthDate: req.body.birthdate });
     if (req.body.password !== req.body.password2) {
         req.flash("error", "Password Does not match!!");
         return res.redirect('/register');
