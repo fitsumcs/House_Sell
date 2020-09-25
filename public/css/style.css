@@ -17,3 +17,7 @@ img.detail {
     font-size: .7rem;
     color: rgb(97, 56, 7);
 }
+
+.detail {
+    height: 40rem;
+}
