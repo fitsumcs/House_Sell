@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
         }
         passport.authenticate('local')(req, res, () => {
             req.flash("success", `Welcome ${user.username}`);
-            res.redirect('/houses');
+            res.redirect('/houses//allhouse/1');
         });
     });
 });

@@ -32,6 +32,36 @@ router.get('/allhouse/:page', async(req, res) => {
     }
 
 });
+//self post
+router.get('/selfpost/:page', async(req, res) => {
+
+    const resPerPage = 3; // results per page
+    const page = req.params.page || 1; // Page
+
+
+    try {
+
+
+        // Find Demanded Products - Skipping page values, limit results per page
+        const homes = await HouseModel.find({ 'author.id': req.user._id })
+            .sort({ createdAt: -1 })
+            .skip((resPerPage * page) - resPerPage)
+            .limit(resPerPage);
+        // Count how many products were found
+        const numOfHomes = await HouseModel.countDocuments({ 'author.id': req.user._id });
+        // Renders The Page
+        res.render('home', {
+            homes: homes,
+            currentPage: page,
+            pages: Math.ceil(numOfHomes / resPerPage),
+            numOfResults: numOfHomes
+        });
+
+    } catch (err) {
+        console.log("Some Internal Error " + err);
+    }
+
+});
 // new house form view
 router.get('/new', isLogged, (req, res) => {
     res.render('newHouse');
