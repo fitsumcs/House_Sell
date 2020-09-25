@@ -5,7 +5,7 @@ const { isLogged, checkOwner } = require('../middleware');
 
 router.get('/allhouse/:page', async(req, res) => {
 
-    const resPerPage = 3; // results per page
+    const resPerPage = 6; // results per page
     const page = req.params.page || 1; // Page
 
 
@@ -35,7 +35,7 @@ router.get('/allhouse/:page', async(req, res) => {
 //self post
 router.get('/selfpost/:page', async(req, res) => {
 
-    const resPerPage = 3; // results per page
+    const resPerPage = 6; // results per page
     const page = req.params.page || 1; // Page
 
 
