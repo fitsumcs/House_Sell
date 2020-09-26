@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 });
 //routes 
 app.get("/", (req, res) => {
-    res.render('index', { url: req.url });
+    res.render('index');
 });
 
 app.use('/houses', houseRoute);

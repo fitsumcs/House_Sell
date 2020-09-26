@@ -9,21 +9,36 @@
 
                 <div class="card pr-3" style="width: 18rem;">
                     <i class="fa fa-user-circle-o fa-5x p-3" aria-hidden="true"></i>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>First Name :</strong>
-                            <%= currentUser.firstname%>
-                        </li>
-                        <li class="list-group-item"><strong>Last Name :</strong>
-                            <%= currentUser.lastname%>
-                        </li>
-                        <li class="list-group-item"><strong>Birth Date :</strong>
-                            <%= currentUser.birthDate.toDateString() %>
-                        </li>
-                        <li class="list-group-item"><strong>Email  :</strong> Your Mail
-                        </li>
-                        <li class="list-group-item"><strong>Phone  :</strong> Your Phone
-                        </li>
-                    </ul>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">First Name </th>
+                                <td>
+                                    <%= currentUser.firstname%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Last Name </th>
+                                <td>
+                                    <%= currentUser.lastname%>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Birth Date </th>
+                                <td>
+                                    <%= currentUser.birthDate.toDateString() %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email </th>
+                                <td>Your Mail</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Phone </th>
+                                <td>Your Phone</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div class="card-body">
                         <a href="#" class="card-link">Edit Info</a>
                     </div>
