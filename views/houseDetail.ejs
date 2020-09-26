@@ -12,13 +12,37 @@
                     <em class="date"> <%= home.createdAt.toDateString()%></em>
 
                 </li>
+                <li class="list-group-item pl-0">
+                    <ul class="list-group ">
+                        <li class="list-group-item">
+
+                            <strong>About the House :</strong>
+                            <%= home.title%>
+                        </li>
+                        <li class="list-group-item">
+
+                            <strong>City :</strong>
+                            <%= home.city%>
+                        </li>
+                        <li class="list-group-item">
+
+                            <strong>Location :</strong>
+                            <%= home.location%>
+                        </li>
+                        <li class="list-group-item">
+
+                            <strong>Price : Birr</strong>
+                            <%= home.price%>
+                        </li>
+                    </ul>
+                </li>
                 <li class="list-group-item">
 
-                    <strong> <em>Submitted By :</em> </strong>
-                    <%= home.author.username%>
+                    <strong> <em>Description :</em> </strong>
+                    <%- home.description%>
                 </li>
                 <% if(currentUser && home.author.id.equals(currentUser._id)) {%>
-                    <div class="mt-3">
+                    <div class="mt-3 mb-3">
                         <a class="btn btn-outline-info btn-sm" href="/houses/<%= home._id %>/edit">Edit House Info</a>
 
                         <form class="din" action="/houses/<%= home._id %>?_method=DELETE" method="post">
@@ -29,26 +53,39 @@
 
             </div>
             <div class="col-md-3">
-                <ul class="list-group">
-                    <li class="list-group-item">
-
-                        <strong>About the House :</strong>
-                        <%= home.title%>
+                <ul class="list-group ">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <i class="fa fa-user-circle-o fa-3x mr-auto" aria-hidden="true"></i>
+                        <span>
+                            <ul class="text-capitalize list-unstyled"> 
+                                <li> <%= currentUser.firstname%> <%= currentUser.lastname%></li>
+                                <li class="font-italic text-info">Member Since  2020 </li>
+                                <li class="font-italic text-secondary">40 Total Posts</li>
+                            </ul>
+                        </span>
                     </li>
                     <li class="list-group-item">
-
-                        <strong>City :</strong>
-                        <%= home.city%>
+                        <strong>Contact Seller</strong>
                     </li>
                     <li class="list-group-item">
-
-                        <strong>Location :</strong>
-                        <%= home.location%>
+                        <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                              Phone Number
+                            </a>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                0945666666
+                            </div>
+                        </div>
                     </li>
                     <li class="list-group-item">
-
-                        <strong>Price : Birr</strong>
-                        <%= home.price%>
+                        <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                              Email Address
+                            </a>
+                        <div class="collapse" id="collapseExample2">
+                            <div class="card card-body">
+                                sdsad@gmail.com
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

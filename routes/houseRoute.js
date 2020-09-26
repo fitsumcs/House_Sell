@@ -88,11 +88,12 @@ router.post('/', isLogged, (req, res) => {
     const price = req.body.price;
     const city = req.body.city;
     const location = req.body.location;
+    const description = req.body.description;
     const author = {
         id: req.user._id,
         username: req.user.username
     };
-    const data = { title, image, price, city, location, author };
+    const data = { title, image, price, city, location, description, author };
     HouseModel.create(data, (error, data) => {
         if (error) {
             console.log("Some Error");

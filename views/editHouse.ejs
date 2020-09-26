@@ -23,6 +23,10 @@
                 <label for="title">Image Url</label>
                 <input type="url" class="form-control" aria-describedby="imageURL" value="<%= homes.image %>" id="image" name="house[image]" required>
             </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" aria-describedby="houseDescription" name="house[description]" required><%- homes.description %></textarea>
+            </div>
             <button type="submit" class="btn btn-primary">Edit House</button>
         </form>
 

@@ -20,6 +20,10 @@ const houseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: true
+    },
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
