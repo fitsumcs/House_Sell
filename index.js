@@ -48,11 +48,12 @@ app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.error = req.flash('error');
     res.locals.success = req.flash('success');
+    res.locals.url = req.url;
     next();
 });
 //routes 
 app.get("/", (req, res) => {
-    res.render('index');
+    res.render('index', { url: req.url });
 });
 
 app.use('/houses', houseRoute);
