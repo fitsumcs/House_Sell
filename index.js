@@ -11,6 +11,7 @@ const flash = require('connect-flash');
 const houseRoute = require('./routes/houseRoute');
 const authRoute = require('./routes/authRoute');
 const userRoute = require('./routes/userinfo');
+const passwordRoute = require('./routes/passManagment');
 
 // port 
 const port = process.env.PORT || 3000;
@@ -59,5 +60,6 @@ app.get("/", (req, res) => {
 app.use('/houses', houseRoute);
 app.use(authRoute);
 app.use('/user', userRoute);
+app.use(passwordRoute);
 
 app.listen(port, () => console.log("Server Started"));
