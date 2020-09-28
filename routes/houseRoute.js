@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const HouseModel = require('../models/house');
+const UserModel = require('../models/user');
 const { isLogged, checkOwner } = require('../middleware');
 
 router.get('/allhouse/:page', async(req, res) => {
@@ -73,7 +74,12 @@ router.get('/:id', (req, res) => {
             console.log("Some Error");
 
         } else {
-            res.render('houseDetail', { home });
+            console.log(home.author.id);
+            const theUser = UserModel.findById(home.author.id, (err, user) => {
+                if (err) return console.log(err);
+                res.render('houseDetail', { home, user });
+            });
+
         }
 
     });
