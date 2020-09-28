@@ -68,16 +68,19 @@ router.get('/new', isLogged, (req, res) => {
     res.render('newHouse');
 });
 // view single house form view
-router.get('/:id', (req, res) => {
+router.get('/:id', async(req, res) => {
     HouseModel.findById(req.params.id, (error, home) => {
         if (error) {
             console.log("Some Error");
 
         } else {
-            console.log(home.author.id);
             const theUser = UserModel.findById(home.author.id, (err, user) => {
                 if (err) return console.log(err);
-                res.render('houseDetail', { home, user });
+                HouseModel.countDocuments({ 'author.id': user._id }, (err, countPost) => {
+                    if (err) return console.log(err);
+                    res.render('houseDetail', { home, user, countPost });
+                });
+
             });
 
         }
@@ -138,10 +141,10 @@ router.put('/:id', checkOwner, (req, res) => {
 router.delete('/:id', checkOwner, (req, res) => {
     HouseModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
-            res.redirect('/houses');
+            res.redirect('/houses/allhouse/1');
         } else {
             req.flash("error", "You have Deleted House Info!");
-            res.redirect('/houses');
+            res.redirect('/houses/allhouse/1');
         }
     });
 });
