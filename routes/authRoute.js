@@ -3,12 +3,13 @@ const router = express.Router();
 const UserModel = require('../models/user');
 const passport = require('passport');
 const url = require('url');
+const { isLoggedOut } = require('../middleware');
 //Auth Route 
 //register 
-router.get('/register', (req, res) => {
+router.get('/register', isLoggedOut, (req, res) => {
     res.render('register');
 });
-router.post('/register', (req, res) => {
+router.post('/register', isLoggedOut, (req, res) => {
     const newUser = new UserModel({ firstname: req.body.firstname, lastname: req.body.lastname, username: req.body.username, birthDate: req.body.birthdate, email: req.body.email, phone: req.body.phone });
     if (req.body.password !== req.body.password2) {
         req.flash("error", "Password Does not match!!");
@@ -29,7 +30,7 @@ router.post('/register', (req, res) => {
 });
 
 //login 
-router.get('/login', (req, res) => {
+router.get('/login', isLoggedOut, (req, res) => {
 
     res.render('login');
 });

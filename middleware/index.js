@@ -37,6 +37,15 @@ middleware.isLogged = function(req, res, next) {
     req.flash("error", "Please Login!");
     res.redirect('/login');
 };
+//check logout 
+//check login
+middleware.isLoggedOut = function(req, res, next) {
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
+};
+
 
 
 module.exports = middleware;
