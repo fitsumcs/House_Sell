@@ -62,6 +62,6 @@ app.use('/houses', houseRoute);
 app.use(authRoute);
 app.use('/user', userRoute);
 app.use(passwordRoute);
-app.use(adminRoute);
+app.use('/admin', adminRoute);
 
 app.listen(port, () => console.log("Server Started"));

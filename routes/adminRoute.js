@@ -5,7 +5,7 @@ const UserModel = require('../models/user');
 
 
 //admin dashboard 
-router.get('/admin', async(req, res) => {
+router.get('/', async(req, res) => {
     // Count how many products were found
     const allUsers = await UserModel.find({});
     const numOfHomes = await HouseModel.countDocuments();
@@ -17,9 +17,21 @@ router.get('/admin', async(req, res) => {
     };
     res.render('admin/admin', data);
 });
-
+//admin dashboard 
+router.get('/posts', async(req, res) => {
+    // Count how many products were found
+    const allHouse = await HouseModel.find({});
+    const numOfHomes = await HouseModel.countDocuments();
+    const numOfUsers = await UserModel.countDocuments();
+    const data = {
+        allHouse,
+        numOfHomes,
+        numOfUsers
+    };
+    res.render('admin/posts', data);
+});
 // delete 
-router.delete('/admin/user/:id', (req, res) => {
+router.delete('/user/:id', (req, res) => {
     UserModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
             res.redirect('/admin');
