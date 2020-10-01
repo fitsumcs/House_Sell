@@ -35,7 +35,7 @@ router.get('/login', isLoggedOut, (req, res) => {
     res.render('login');
 });
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/houses//allhouse/1',
+    successRedirect: '/houses/allhouse/1',
     failureRedirect: '/login',
     failureFlash: true
 }), (req, res) => {});

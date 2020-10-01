@@ -36,8 +36,16 @@ router.delete('/user/:id', (req, res) => {
         if (err) {
             res.redirect('/admin');
         } else {
-            // req.flash("error", "You have Deleted House Info!");
-            res.redirect('/admin');
+
+            HouseModel.deleteMany({ 'author.id': req.params.id }, (err) => {
+                if (err) {
+                    res.redirect('/admin');
+                } else {
+                    // req.flash("error", "You have Deleted House Info!");
+                    res.redirect('/admin');
+                }
+            });
+
         }
     });
 });
