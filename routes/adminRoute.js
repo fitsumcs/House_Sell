@@ -30,7 +30,7 @@ router.get('/posts', async(req, res) => {
     };
     res.render('admin/posts', data);
 });
-// delete 
+// delete user
 router.delete('/user/:id', (req, res) => {
     UserModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
@@ -38,6 +38,17 @@ router.delete('/user/:id', (req, res) => {
         } else {
             // req.flash("error", "You have Deleted House Info!");
             res.redirect('/admin');
+        }
+    });
+});
+// delete house
+router.delete('/posts/:id', (req, res) => {
+    HouseModel.findByIdAndRemove(req.params.id, (err) => {
+        if (err) {
+            res.redirect('/admin/posts');
+        } else {
+            // req.flash("error", "You have Deleted House Info!");
+            res.redirect('/admin/posts');
         }
     });
 });
