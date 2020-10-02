@@ -59,30 +59,6 @@ router.post('/login', (req, res, next) => {
 
         })(req, res, next);
 });
-// router.post('/login', passport.authenticate('local', {
-//     successRedirect: '/houses/allhouse/1',
-//     failureRedirect: '/login',
-//     failureFlash: true
-// }), (req, res) => {});
-// 
-// router.post('/login', (req, res) => {
-//     const user = new UserModel({ username: req.body.username, password: req.body.password });
-//     req.login(user, function(err) {
-//         if (err) {
-//             //next(err);
-//             //req.flash("error", "User Name or Password Incorrect!");
-//             res.redirect('/');
-//             console.log(err);
-//         } else {
-//             // console.log("The role " + user.role);
-//             passport.authenticate('local')(req, res, (err) => {
-//                 console.log(err);
-//                 res.redirect('/houses/allhouse/1');
-//             });
-
-//         }
-//     });
-// })
 
 //logout
 router.get('/logout', (req, res) => {
