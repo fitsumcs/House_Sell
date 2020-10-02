@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const HouseModel = require('../models/house');
 const UserModel = require('../models/user');
-
+const { isLogged } = require('../middleware');
 
 //admin dashboard 
-router.get('/', async(req, res) => {
+router.get('/', isLogged, async(req, res) => {
     // Count how many products were found
     const allUsers = await UserModel.find({});
     const numOfHomes = await HouseModel.countDocuments();
@@ -17,8 +17,8 @@ router.get('/', async(req, res) => {
     };
     res.render('admin/admin', data);
 });
-//admin dashboard 
-router.get('/posts', async(req, res) => {
+//admin dashboard for posts 
+router.get('/posts', isLogged, async(req, res) => {
     // Count how many products were found
     const allHouse = await HouseModel.find({});
     const numOfHomes = await HouseModel.countDocuments();
@@ -31,7 +31,7 @@ router.get('/posts', async(req, res) => {
     res.render('admin/posts', data);
 });
 // delete user
-router.delete('/user/:id', (req, res) => {
+router.delete('/user/:id', isLogged, (req, res) => {
     UserModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
             res.redirect('/admin');
@@ -50,7 +50,7 @@ router.delete('/user/:id', (req, res) => {
     });
 });
 // delete house
-router.delete('/posts/:id', (req, res) => {
+router.delete('/posts/:id', isLogged, (req, res) => {
     HouseModel.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
             res.redirect('/admin/posts');

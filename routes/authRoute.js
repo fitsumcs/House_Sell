@@ -34,11 +34,56 @@ router.get('/login', isLoggedOut, (req, res) => {
 
     res.render('login');
 });
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/houses/allhouse/1',
-    failureRedirect: '/login',
-    failureFlash: true
-}), (req, res) => {});
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local',
+        (err, user, info) => {
+            if (err) {
+                return next(err);
+            }
+
+            if (!user) {
+                req.flash("error", "User Name or Password Incorrect!");
+                return res.redirect('/login');
+            }
+
+            req.logIn(user, function(err) {
+                if (err) {
+                    return next(err);
+                }
+                if (user.role === 'admin') {
+                    return res.redirect('/admin');
+                }
+
+                return res.redirect('/');
+            });
+
+        })(req, res, next);
+});
+// router.post('/login', passport.authenticate('local', {
+//     successRedirect: '/houses/allhouse/1',
+//     failureRedirect: '/login',
+//     failureFlash: true
+// }), (req, res) => {});
+// 
+// router.post('/login', (req, res) => {
+//     const user = new UserModel({ username: req.body.username, password: req.body.password });
+//     req.login(user, function(err) {
+//         if (err) {
+//             //next(err);
+//             //req.flash("error", "User Name or Password Incorrect!");
+//             res.redirect('/');
+//             console.log(err);
+//         } else {
+//             // console.log("The role " + user.role);
+//             passport.authenticate('local')(req, res, (err) => {
+//                 console.log(err);
+//                 res.redirect('/houses/allhouse/1');
+//             });
+
+//         }
+//     });
+// })
+
 //logout
 router.get('/logout', (req, res) => {
     req.logout();

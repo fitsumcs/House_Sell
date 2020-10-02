@@ -43,6 +43,9 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new passportLocal(UserModel.authenticate()));
+
+// CHANGE: USE "createStrategy" INSTEAD OF "authenticate"
+//passport.use(UserModel.createStrategy());
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 //current user 
