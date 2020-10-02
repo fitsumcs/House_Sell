@@ -7,9 +7,9 @@ const { isLogged } = require('../middleware');
 //admin dashboard 
 router.get('/', isLogged, async(req, res) => {
     // Count how many products were found
-    const allUsers = await UserModel.find({});
+    const allUsers = await UserModel.find({ role: 'user' });
     const numOfHomes = await HouseModel.countDocuments();
-    const numOfUsers = await UserModel.countDocuments();
+    const numOfUsers = await UserModel.countDocuments({ role: 'user' });
     const data = {
         allUsers,
         numOfHomes,
@@ -22,7 +22,7 @@ router.get('/posts', isLogged, async(req, res) => {
     // Count how many products were found
     const allHouse = await HouseModel.find({});
     const numOfHomes = await HouseModel.countDocuments();
-    const numOfUsers = await UserModel.countDocuments();
+    const numOfUsers = await UserModel.countDocuments({ role: 'user' });
     const data = {
         allHouse,
         numOfHomes,
