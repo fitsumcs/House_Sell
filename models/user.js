@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     password: String,
     role: {
         type: String,
-        default: "user"
+        default: "admin"
     }
 }, { timestamps: true });
 userSchema.plugin(passportLocalMongoose);
