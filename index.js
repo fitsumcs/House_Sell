@@ -7,6 +7,9 @@ const passport = require('passport');
 const passportLocal = require('passport-local');
 const method_override = require('method-override');
 const flash = require('connect-flash');
+
+
+
 //routes
 const houseRoute = require('./routes/houseRoute');
 const authRoute = require('./routes/authRoute');
@@ -30,6 +33,7 @@ const app = express();
 
 // config 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.engine('ejs', require('ejs-locals'));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(method_override('_method'));
