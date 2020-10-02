@@ -4,6 +4,8 @@ const HouseModel = require('../models/house');
 const UserModel = require('../models/user');
 const { isLogged, checkOwner } = require('../middleware');
 
+
+
 router.get('/allhouse/:page', async(req, res) => {
 
     const resPerPage = 6; // results per page
@@ -149,7 +151,29 @@ router.delete('/:id', checkOwner, (req, res) => {
     });
 });
 
+// search 
+router.post('/search', async(req, res) => {
 
+    const regex = new RegExp(req.body.searchtext, 'i');
+
+    try {
+
+
+        // Find Demanded Products - Skipping page values, limit results per page
+        const homes = await HouseModel.find({ $or: [{ title: regex }, { location: regex }, { city: regex }, { description: regex }] })
+            .sort({ createdAt: -1 })
+            .limit(6);
+        // Count how many products were found
+        const numOfHomes = await HouseModel.countDocuments();
+        // Renders The Page
+        res.render('home', {
+            homes: homes,
+        });
+
+    } catch (err) {
+        console.log("Some Internal Error " + err);
+    }
+});
 
 
 

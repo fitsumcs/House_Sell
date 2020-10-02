@@ -2,70 +2,80 @@
 
     <div class="container">
 
-
-        <header class="jumbotron">
-            <div class="container">
-
-
-                <h1>Wellcome to House Sell in Ethiopia!</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, unde nulla, sequi temporibus tempora impedit architecto magni alias neque animi, tempore veniam autem dignissimos voluptas omnis quod blanditiis? Inventore, distinctio!</p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="/houses/new">Add New House</a>
-                </p>
+        <div class="row mb-5 mt-5">
+            <div class="col-12">
+                <form action="/houses/search" autocomplete="off" class="form-horizontal" method="post" accept-charset="utf-8">
+                    <div class="input-group">
+                        <input name="searchtext" value="" class="form-control" type="text" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-outline-success my-2 mx-2 my-sm-0" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
             </div>
-        </header>
+
+        </div>
 
         <div class="row ">
 
+            <% if(homes.length > 0){%>
+                <% homes.forEach((home)=>{%>
+                    <div class="col-md-4 mb-2">
 
-            <% homes.forEach((home)=>{%>
-                <div class="col-md-4 mb-2">
+                        <img class="img-thumbnail im" src="<%= home.image%>">
+                        <em class="date"><%= home.createdAt.toDateString()%></em>
+                        <p class="mb-1">
+                            <a href="/houses/<%= home._id%>">
+                                <%= home.title%>
 
-                    <img class="img-thumbnail im" src="<%= home.image%>">
-                    <em class="date"><%= home.createdAt.toDateString()%></em>
-                    <p class="mb-1">
-                        <a href="/houses/<%= home._id%>">
-                            <%= home.title%>
-
-                        </a>
+                            </a>
 
 
-                    </p>
-                    <p class="mb-1">
-                        <%= home.location%> -
-                            <%= home.city%>
-                    </p>
-                    <p class="font-weight-bold">Birr
-                        <%= home.price%>
-                    </p>
-                </div>
-                <%})%>
+                        </p>
+                        <p class="mb-1">
+                            <%= home.location%> -
+                                <%= home.city%>
+                        </p>
+                        <p class="font-weight-bold">Birr
+                            <%= home.price%>
+                        </p>
+                    </div>
+                    <%})%>
+                        <% }else{%>
+                            <div class="container">
+                                <p>No House Available !!</p>
+                            </div>
+
+                            <% }%>
+
         </div>
         <div class="row  ">
             <div class="col-12 text-center">
-                <% if ( pages > 1) { %>
-                    <ul class="pagination ">
+                <% if ( typeof pages !== 'undefined') { %>
+                    <% if ( pages > 1) { %>
+                        <ul class="pagination ">
 
 
-                        <% for (var i =1; i <=pages;  i++ ) { %>
+                            <% for (var i =1; i <=pages;  i++ ) { %>
 
-                            <% if(i===parseInt(currentPage)) {%>
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#">
-                                        <%=  parseInt(currentPage) %>
-                                    </a>
-                                </li>
-                                <% } else{%>
-                                    <li class="page-item">
-                                        <a class="page-link" href="/houses/allhouse/<%= i %>">
-                                            <%= i %>
+                                <% if(i===parseInt(currentPage)) {%>
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">
+                                            <%=  parseInt(currentPage) %>
                                         </a>
                                     </li>
+                                    <% } else{%>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/houses/allhouse/<%= i %>">
+                                                <%= i %>
+                                            </a>
+                                        </li>
 
-                                    <% } %>
                                         <% } %>
-                    </ul>
-                    <% } %>
+                                            <% } %>
+                        </ul>
+                        <% } %>
+                            <% } %>
             </div>
         </div>
     </div>
