@@ -8,12 +8,14 @@ const { isLogged } = require('../middleware');
 router.get('/', isLogged, async(req, res) => {
     // Count how many products were found
     const allUsers = await UserModel.find({ role: 'user' });
+    const allAdminUsers = await UserModel.countDocuments({ role: 'admin' });
     const numOfHomes = await HouseModel.countDocuments();
     const numOfUsers = await UserModel.countDocuments({ role: 'user' });
     const data = {
         allUsers,
         numOfHomes,
-        numOfUsers
+        numOfUsers,
+        allAdminUsers
     };
     res.render('admin/admin', data);
 });
@@ -23,10 +25,12 @@ router.get('/posts', isLogged, async(req, res) => {
     const allHouse = await HouseModel.find({});
     const numOfHomes = await HouseModel.countDocuments();
     const numOfUsers = await UserModel.countDocuments({ role: 'user' });
+    const allAdminUsers = await UserModel.countDocuments({ role: 'admin' });
     const data = {
         allHouse,
         numOfHomes,
-        numOfUsers
+        numOfUsers,
+        allAdminUsers
     };
     res.render('admin/posts', data);
 });
