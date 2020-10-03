@@ -18,7 +18,7 @@ const passwordRoute = require('./routes/passManagment');
 const adminRoute = require('./routes/adminRoute');
 
 // port 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 // db url 
 const database_url = process.env.DB_URL || 'mongodb://localhost/house_db';
 

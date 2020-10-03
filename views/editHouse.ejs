@@ -2,7 +2,7 @@
     <div class="container">
         <h3>Edit
             <em><%= homes.title %></em> House Info!</h3>
-        <form action="/houses/<%= currentUser._id %>?_method=PUT" method="post">
+        <form action="/houses/<%= homes._id %>?_method=PUT" method="post">
             <div class="form-group">
                 <label for="title">Short Title</label>
                 <input type="text" class="form-control" aria-describedby="shortTitle" value="<%= homes.title %>" id="title" name="house[title]" required>
